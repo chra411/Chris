@@ -2,38 +2,171 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Alibaba Backend Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christopher Aruldoss | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-        #result { font-weight: bold; color: green; margin-top: 20px; }
-        button { padding: 10px 20px; cursor: pointer; }
+        :root {
+            --bg: #030712;
+            --accent: #38bdf8;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #f1f5f9;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        /* Layout */
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        
+        header { text-align: center; padding: 60px 0; }
+        h1 { font-size: 3.5rem; margin: 0; font-weight: 800; letter-spacing: -0.05em; }
+        .tagline { color: var(--accent); font-size: 1.25rem; font-weight: 500; margin-top: 10px; }
+
+        /* Status Badge */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 999px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+        .status-pill:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-2px); }
+        .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 12px; box-shadow: 0 0 10px var(--accent); }
+
+        /* Grid Sections */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+        
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            transition: border 0.3s ease;
+        }
+        .glass-card:hover { border-color: var(--accent); }
+
+        h2 { font-size: 1.5rem; margin-top: 0; display: flex; align-items: center; gap: 12px; }
+        h2 i { color: var(--accent); font-size: 1.2rem; }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .exp-item { border-left: 2px solid var(--border); padding-left: 20px; margin-bottom: 24px; position: relative; }
+        .exp-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+
+        footer { text-align: center; padding: 60px 0; color: #64748b; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <h1>Connection Test</h1>
-    <button onclick="fetchBackend()">Connect to Alibaba Cloud</button>
-    
-    <div id="result">Click the button to test...</div>
+    <div class="blob" style="top: -200px; right: -100px;"></div>
+    <div class="blob" style="bottom: -200px; left: -100px;"></div>
+
+    <div class="container">
+        <header>
+            <h1>Christopher Aruldoss</h1>
+            <p class="tagline">Customer Delivery Manager | Solution Architect</p>
+            
+            <div class="status-pill" onclick="checkCloud()">
+                <div class="dot" id="cloud-dot"></div>
+                <span id="cloud-text">Verify Alibaba Cloud Backend</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="glass-card" style="grid-column: span 2;">
+                <h2><i class="fas fa-user-tie"></i> Professional Highlights</h2>
+                [span_4](start_span)<p>Results-driven leader with a proven track record in orchestrating multi-million dollar Video and Broadband portfolios[span_4](end_span). [span_5](start_span)[span_6](start_span)Expert in delivering Next-Gen Wi-Fi 6 & 7 solutions and architecting end-to-end IPTV/OTT ecosystems for Tier-1 operators[span_5](end_span)[span_6](end_span).</p>
+                <div class="skills-grid">
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Techno-Commercial Strategy</span>
+                    <span class="skill-tag">P&L Optimization</span>
+                    <span class="skill-tag">AWS AI Practitioner (In Prep)</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2><i class="fas fa-microchip"></i> Technical Expertise</h2>
+                <div style="margin-top: 15px;">
+                    [span_7](start_span)<strong>Broadband:</strong> Wi-Fi 7/6, FWA, Mesh[span_7](end_span)<br>
+                    [span_8](start_span)<strong>Video:</strong> Huawei IPTV/OTT[span_8](end_span)<br>
+                    [span_9](start_span)[span_10](start_span)<strong>Telecom:</strong> BSS/OSS, SMSC, VAS[span_9](end_span)[span_10](end_span)<br>
+                    [span_11](start_span)[span_12](start_span)<strong>Cloud:</strong> Azure, Alibaba, Docker[span_11](end_span)[span_12](end_span)
+                </div>
+            </div>
+
+            <div class="glass-card" style="grid-column: span 2;">
+                <h2><i class="fas fa-briefcase"></i> Key Experience</h2>
+                <div class="exp-item">
+                    <strong>Customer Project Manager | Vantiva Technologies</strong>
+                    <div style="font-size: 0.85rem; color: #94a3b8;">Dubai, UAE | Jan 2024 - Present</div>
+                    [span_13](start_span)<p style="margin-top: 8px;">Directly overseeing 7 broadband product lines and a fleet of 1M+ devices for Tier-1 accounts[span_13](end_span).</p>
+                </div>
+                <div class="exp-item">
+                    <strong>Senior Solution Architect | Huawei Technologies</strong>
+                    <div style="font-size: 0.85rem; color: #94a3b8;">Dubai, UAE | 2011 - 2023</div>
+                    [span_14](start_span)<p style="margin-top: 8px;">Secured $70M in new business through complex RFP responses and bespoke IPTV/OTT architectures[span_14](end_span).</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                [span_15](start_span)<p><strong>B.E. in Electronics & Communication</strong><br>Karunya Institute of Technology[span_15](end_span)</p>
+                [span_16](start_span)<p><strong>MBA in Marketing</strong><br>Bharthidasan University[span_16](end_span)</p>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Christopher Aruldoss | Built with GitHub & Alibaba Cloud
+        </footer>
+    </div>
 
     <script>
-        async function fetchBackend() {
-            const statusDiv = document.getElementById('result');
-            statusDiv.innerText = "Connecting...";
-
-            // REPLACE THIS URL with your actual .fcapp.run link
+        async function checkCloud() {
+            const text = document.getElementById('cloud-text');
+            const dot = document.getElementById('cloud-dot');
+            text.innerText = "Pinging Alibaba Cloud...";
+            
+            // USE YOUR PUBLIC ENDPOINT URL HERE
             const url = "https://my-portfunction-xlswldvzbj.ap-southeast-1.fcapp.run";
 
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                
-                // This displays the "message" from your JSON on the screen
-                statusDiv.innerText = "Response: " + data.message;
-                console.log("Full Data:", data);
-            } catch (error) {
-                statusDiv.innerText = "Error: Could not connect.";
-                statusDiv.style.color = "red";
-                console.error("Fetch error:", error);
+                text.innerText = "Alibaba Backend: " + data.message;
+                dot.style.background = "#22c55e";
+                dot.style.boxShadow = "0 0 15px #22c55e";
+            } catch (err) {
+                text.innerText = "Backend Connection Failed";
+                dot.style.background = "#ef4444";
+                dot.style.boxShadow = "0 0 15px #ef4444";
             }
         }
     </script>

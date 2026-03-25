@@ -138,10 +138,43 @@
                  <p><strong>MBA in Marketing</strong><br>Bharthidasan University</p>
             </div>
         </div>
-         <div class="status-pill" onclick="checkCloud()" align='center'>
-                <div class="dot" id="cloud-dot"></div>
-                <span id="cloud-text">Verify Alibaba Cloud Backend</span>
-            </div>
+         <!-- 1. Wrap your code in a parent container -->
+<div class="pill-container">
+    <div class="status-pill" onclick="checkCloud()">
+        <div class="dot" id="cloud-dot"></div>
+        <span id="cloud-text">Verify Alibaba Cloud Backend</span>
+    </div>
+</div>
+
+<style>
+/* 2. Apply Flexbox to the container to center the pill */
+.pill-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    min-height: 100vh;       /* Makes the container fill the screen height */
+}
+
+/* 3. Style the pill itself to align the dot and text */
+.status-pill {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+</style>
+
 
         <footer>
             &copy; 2026 Christopher Aruldoss | Built with GitHub & Alibaba Cloud
